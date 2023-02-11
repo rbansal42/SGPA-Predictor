@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>SGPA Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    <input type="text" name="Sum of Internal Marks " placeholder="Sum of Internal Marks " required="required" /> <br>
+
+
+    <input type="text" name="10th Percentage" placeholder="10th Percentage" required="required" /><br>
+
+
+		<input type="text" name="12th Percentage" placeholder="12th Percentage" required="required" /><br>
+
+
+
+		<input type="text" name="Total Times Debarred" placeholder="Total Times Debarred" required="required" /><br>
+
+
+
+    <input type="radio" id="CSE" name="Stream" value="0">
+    <label for="CSE">CSE</label><br>
+    <input type="radio" id="CSEAIML" name="Stream" value="1">
+    <label for="CSEAIML">CSEAIML</label><br>
+    <input type="radio" id="CSECS" name="Stream" value="2">
+    <label for="CSECS">CSECS</label><br>
+    <input type="radio" id="CSEITBC" name="Stream" value="3">
+    <label for="CSEITBC">CSEITBC</label><br>
+    <!-- <input type="text" name="Stream" placeholder="Stream" required="required" /><br> -->
+
+
+    <input type="text" name="Total Subjects" placeholder="Total Subjects" required="required" /><br>
+
+    
+    <input type="radio" id="Male" name="Gender" value="1">
+    <label for="Male">Male</label><br>
+    <input type="radio" id="Female" name="Gender" value="0">
+    <label for="Female">Female</label><br>
+    <!-- <input type="text" name="Gender" placeholder="Gender" required="required" /><br> -->
+
+
+    <input type="text" name="Study Hours" placeholder="Study Hours" required="required" /><br>
+
+
+    <!-- <input type="text" name="10th Board" placeholder="10th Board" required="required" /><br> -->
+    <input type="radio" id="CBSE" name="10th Board" value="0">
+    <label for="CBSE">CBSE</label><br>
+    <input type="radio" id="ICSE" name="10th Board" value="1">
+    <label for="ICSE">ICSE</label><br>
+    <input type="radio" id="IB" name="10th Board" value="2">
+    <label for="IB">IB</label><br>
+    <input type="radio" id="State" name="10th Board" value="3">
+    <label for="State">State</label><br>
+    <input type="radio" id="Other" name="10th Board" value="4">
+    <label for="Other">Other</label><br>
+
+
+    <!-- <input type="text" name="12th Board" placeholder="12th Board" required="required" /><br> -->
+    <input type="radio" id="CBSE" name="12th Board" value="0">
+    <label for="CBSE">CBSE</label><br>
+    <input type="radio" id="ICSE" name="12th Board" value="1">
+    <label for="ICSE">ICSE</label><br>
+    <input type="radio" id="IB" name="12th Board" value="2">
+    <label for="IB">IB</label><br>
+    <input type="radio" id="State" name="12th Board" value="3">
+    <label for="State">State</label><br>
+    <input type="radio" id="Other" name="12th Board" value="4">
+    <label for="Other">Other</label><br>
+
+
+
+    <input type="text" name="Co-Curricular Activity" placeholder="Co-Curricular Activity" required="required" /><br>
+
+
+    <!-- <input type="text" name="Library Books" placeholder="Library Books" required="required" /><br> -->
+    <input type="radio" id="Yes" name="Library Books" value="1">
+    <label for="Yes">Yes</label><br>
+    <input type="radio" id="No" name="Library Books" value="0">
+    <label for="No">No</label><br>
+
+
+    <!-- <input type="text" name="Assignments" placeholder="Assignments" required="required" /><br> -->
+    <input type="radio" id="Yes" name="Assignments" value="1">
+    <label for="Yes">Yes</label><br>
+    <input type="radio" id="No" name="Assignments" value="0">
+    <label for="No">No</label><br>
+
+
+    <!-- <input type="text" name="Mentor" placeholder="Mentor" required="required" /><br> -->
+    <input type="radio" id="Yes" name="Mentor" value="1">
+    <label for="Yes">Yes</label><br>
+    <input type="radio" id="No" name="Mentor" value="0">
+    <label for="No">No</label><br>
+
+    <!-- <input type="text" name="Place of Living" placeholder="Place of Living" required="required" /><br> -->
+    <input type="radio" id="Hostel" name="Place of Living" value="0">
+    <label for="Hostel">Hostel</label><br>
+    <input type="radio" id="PG" name="Place of Living" value="1">
+    <label for="PG">PG</label><br>
+    <input type="radio" id="House (with family)" name="Place of Living" value="2">
+    <label for="House (with family)">House (with family)</label><br>
+    <input type="radio" id="House (without family)" name="Place of Living" value="3">
+    <label for="House (without family)">House (without family)</label><br>
+
+
+
+    <!-- <input type="text" name="Distance from College" placeholder="Distance from College" required="required" /><br> -->
+    <input type="radio" id="0 - 1 KM" name="Distance from College" value="0">
+    <label for="0 - 1 KM">0 - 1 KM</label><br>
+    <input type="radio" id="1 - 5 KM" name="Distance from College" value="1">
+    <label for="1 - 5 KM">1 - 5 KM</label><br>
+    <input type="radio" id="5 - 15 KM" name="Distance from College" value="2">
+    <label for="5 - 15 KM">5 - 15 KM</label><br>
+    <input type="radio" id="Above 15 KM" name="Distance from College" value="3">
+    <label for="Above 15 KM">Above 15 KM</label><br>
+
+
+
+
+    <!-- <input type="text" name="Mode of Transport " placeholder="Mode of Transport " required="required" /><br> -->
+    <input type="radio" id="Metro" name="Mode of Transport " value="0">
+    <label for="Metro">Metro</label><br>
+    <input type="radio" id="Cab/Auto/Bike" name="Mode of Transport " value="1">
+    <label for="Cab/Auto/Bike">Cab/Auto/Bike</label><br>
+    <input type="radio" id="Personal Vehicle" name="Mode of Transport " value="2">
+    <label for="Personal Vehicle">Personal Vehicle</label><br>
+
+
+
+
+    <!-- <input type="text" name="Family Income" placeholder="Family Income" required="required" /><br> -->
+    <input type="radio" id="1 - 3 LPA" name="Family Income" value="0">
+    <label for="1 - 3 LPA">1 - 3 LPA</label><br>
+    <input type="radio" id="3 - 5 LPA" name="Family Income" value="1">
+    <label for="3 - 5 LPA">3 - 5 LPA</label><br>
+    <input type="radio" id="5 - 8 LPA" name="Family Income" value="2">
+    <label for="5 - 8 LPA">5 - 8 LPA</label><br>
+    <input type="radio" id="Above 8 LPA" name="Family Income" value="3">
+    <label for="Above 8 LPA">Above 8 LPA</label><br>
+
+
+
+    <input type="text" name="Daily Screen Time" placeholder="Daily Screen Time" required="required" /><br>
+
+
+    <!-- <input type="text" name="Chronic Illness" placeholder="Chronic Illness" required="required" /><br> -->
+    <input type="radio" id="Yes" name="Chronic Illness" value="1">
+    <label for="Yes">Yes</label><br>
+    <input type="radio" id="No" name="Chronic Illness" value="0">
+    <label for="No">No</label><br>
+
+    <input type="text" name="Close Friends" placeholder="Close Friends" required="required" /><br>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
